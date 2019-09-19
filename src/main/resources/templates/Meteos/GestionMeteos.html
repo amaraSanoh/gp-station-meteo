@@ -21,7 +21,6 @@
 		  <thead class="thead-light">
 		    <tr>
 		      <th>Ville</th>
-		      <th>Météo matin °C</th>
 		      <th>Météo midi °C</th>
 		      <th>Météo soir °C</th>
 		      <th>Modifier</th>
@@ -31,7 +30,6 @@
 		  <tbody>
 		    <tr th:each="v: ${jacksonMeteos}">
 		      <td th:text="${v.nom}">Metz</td>
-		      <td th:text="${v.matin}">10</td>
 		      <td th:text="${v.midi}">10</td>
 		      <td th:text="${v.soir}">10</td>
 		      <td><a href="#"><i class="fas fa-pencil-alt text-warning"></i></a></td>
