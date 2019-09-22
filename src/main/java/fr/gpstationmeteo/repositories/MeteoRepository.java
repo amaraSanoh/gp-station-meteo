@@ -16,5 +16,7 @@ import fr.gpstationmeteo.entities.Meteo;
  */
 @Repository
 public interface MeteoRepository extends JpaRepository<Meteo, String> {
-
+	
+	Meteo findByNom(String nom);
+	
 }

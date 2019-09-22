@@ -1,3 +1,39 @@
-INSERT INTO meteo VALUES('Metz', '16', '22', '14');
-INSERT INTO meteo VALUES('Sorneville', '14', '20', '9');
-INSERT INTO meteo VALUES('Nancy', '10', '19', '7');
+
+INSERT INTO meteo VALUES('Metz', '12', '13');
+
+INSERT INTO matin (
+		  	id, 
+			jour, 
+			temperature, 
+			commentaire,
+			icon, 
+			meteo_nom
+		  )
+		  VALUES 
+		  (
+			1, 
+			'lundi', 
+			'12', 
+			'pluie', 
+			'fas fa-cloud-showers-heavy', 
+			'Metz'
+		  );
+
+INSERT INTO matin (
+		  	id, 
+			jour, 
+			temperature, 
+			commentaire,
+			icon, 
+			meteo_nom
+		  )	
+		  VALUES 
+		  (
+			2, 
+			'mardi', 
+			'12', 
+			'pluie', 
+			'fas fa-cloud-showers-heavy', 
+			'Metz'
+		  );
+
