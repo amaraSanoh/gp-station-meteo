@@ -13,3 +13,4 @@ public interface MatinRepository extends JpaRepository<Matin, Long> {
 	Matin findById(int id);
 	List<Matin> findByMeteoNom(String nom);
 }
+
