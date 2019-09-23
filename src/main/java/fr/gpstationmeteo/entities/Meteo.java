@@ -1,86 +1,105 @@
-/**
- * 
- */
 package fr.gpstationmeteo.entities;
 
 
-import java.util.List;
+//import java.time.OffsetDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
-/**
- * @author Taleb - Yade - Sanoh
- *
- */
 @Entity
 public class Meteo {
 
-	@Id
-	@Column
-	@JsonProperty("nom")
-	private String nom; 
-	
-	@OneToMany(targetEntity = Matin.class, mappedBy = "meteo")
-	@JsonManagedReference
-	private  List<Matin> matins = null;
-	
-	@Column
-	@JsonProperty("midi")
-	private String midi; 
-	
-	@Column
-	@JsonProperty("soir")
-	private String soir;
+		@Id
+		@Column
+		@GeneratedValue
+		@JsonProperty("id")
+		private Long id;
+	/*	
+		@Column
+		@JsonProperty("date")
+		private OffsetDateTime date;
+		*/
+		
+		@Column
+		@JsonProperty("jour")
+		private String jour; 
+		
+		@Column
+		@JsonProperty("temperature")
+		private String temperature; 
+		
+		@Column
+		@JsonProperty("commentaire")
+		private String commentaire;
+		
+		@Column
+		@JsonProperty("icon")
+		private String icon;
+		
+		@ManyToOne(targetEntity = Ville.class)
+		@JsonBackReference
+		private  Ville ville = null;
 
-	public String getNom() {
-		return nom;
-	}
+		public Long getId() {
+			return id;
+		}
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+		public void setId(Long id) {
+			this.id = id;
+		}
 
-	public List<Matin> getMatins() {
-		return matins;
-	}
-	
-	public void addMatin(Matin matin) {
-		this.matins.add(matin);
-		matin.setMeteo(this);
-	}
+		public String getJour() {
+			return jour;
+		}
 
-	public void setMatins(List<Matin> matins) {
-		this.matins = matins;
-	}
+		public void setJour(String jour) {
+			this.jour = jour;
+		}
 
-	public String getMidi() {
-		return midi;
-	}
+		public String getTemperature() {
+			return temperature;
+		}
 
-	public void setMidi(String midi) {
-		this.midi = midi;
-	}
+		public void setTemperature(String temperature) {
+			this.temperature = temperature;
+		}
 
-	public String getSoir() {
-		return soir;
-	}
+		public String getCommentaire() {
+			return commentaire;
+		}
 
-	public void setSoir(String soir) {
-		this.soir = soir;
-	}
+		public void setCommentaire(String commentaire) {
+			this.commentaire = commentaire;
+		}
 
-	@Override
-	public String toString() {
-		return "Meteo [nom=" + nom + ", matins=" + matins + ", midi=" + midi + ", soir=" + soir + "]";
-	}
+		public String getIcon() {
+			return icon;
+		}
 
+		public void setIcon(String icon) {
+			this.icon = icon;
+		}
 
-	
+		public Ville getVille() {
+			return ville;
+		}
+
+		public void setVille(Ville ville) {
+			this.ville = ville;
+		}
+
+		@Override
+		public String toString() {
+			return "Meteo [id=" + id + ", jour=" + jour + ", temperature=" + temperature + ", commentaire="
+					+ commentaire + ", icon=" + icon + ", ville=" + ville + "]";
+		}
+
+		
+		
 }

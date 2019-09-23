@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.gpstationmeteo.entities.Matin;
 import fr.gpstationmeteo.entities.Meteo;
-import fr.gpstationmeteo.repositories.MatinRepository;
+import fr.gpstationmeteo.entities.Ville;
 import fr.gpstationmeteo.repositories.MeteoRepository;
+import fr.gpstationmeteo.repositories.VilleRepository;
 import io.swagger.annotations.Api;
 
 /**
@@ -27,22 +27,22 @@ import io.swagger.annotations.Api;
 @RestController
 @RequestMapping("/api")
 @Api(value="Station météo")
-public class RestMeteosControllers {
+public class GetMeteosControllers {
 	
 	@Autowired
 	private MeteoRepository meteoRepo;
 	@Autowired
-	private MatinRepository matinRepo;
+	private VilleRepository villeRepo;
 	
-	@GetMapping("/meteo/{nom}")
-	public Meteo getMeteo(HttpServletRequest request, @PathVariable String nom) 
+	@GetMapping("/ville/{nom}")
+	public Ville getMeteo(HttpServletRequest request, @PathVariable String nom) 
 	{ 
-		return meteoRepo.findByNom(nom);
+		return villeRepo.findByNom(nom);
 	}
 	
-	@GetMapping("/meteo/{nom}/matins")
-	public List<Matin> getMatins(HttpServletRequest request, @PathVariable String nom) 
+	@GetMapping("/ville/{nom}/meteos")
+	public List<Meteo> getMeteos(HttpServletRequest request, @PathVariable String nom) 
 	{
-		return matinRepo.findByMeteoNom(nom);
+		return meteoRepo.findByVilleNom(nom);
 	}
 }
