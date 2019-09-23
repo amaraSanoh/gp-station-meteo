@@ -18,6 +18,7 @@ import fr.gpstationmeteo.entities.Matin;
 import fr.gpstationmeteo.entities.Meteo;
 import fr.gpstationmeteo.repositories.MatinRepository;
 import fr.gpstationmeteo.repositories.MeteoRepository;
+import io.swagger.annotations.Api;
 
 /**
  * @author Taleb - Yade - Amara
@@ -25,6 +26,7 @@ import fr.gpstationmeteo.repositories.MeteoRepository;
  */
 @RestController
 @RequestMapping("/api")
+@Api(value="Station météo")
 public class RestMeteosControllers {
 	
 	@Autowired
