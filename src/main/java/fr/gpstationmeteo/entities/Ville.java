@@ -4,14 +4,15 @@
 package fr.gpstationmeteo.entities;
 
 
-import java.util.List;
+
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -27,9 +28,8 @@ public class Ville {
 	@JsonProperty("nom")
 	private String nom; 
 	
-	@OneToMany(targetEntity = Meteo.class, mappedBy = "ville")
-	@JsonManagedReference
-	private  List<Meteo> meteos = null;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "ville")
+	private  Collection<Meteo> meteos;
 
 	public String getNom() {
 		return nom;
@@ -39,11 +39,11 @@ public class Ville {
 		this.nom = nom;
 	}
 
-	public List<Meteo> getMeteos() {
+	public Collection<Meteo> getMeteos() {
 		return meteos;
 	}
 
-	public void setMeteos(List<Meteo> meteos) {
+	public void setMeteos(Collection<Meteo> meteos) {
 		this.meteos = meteos;
 	}
 
@@ -51,8 +51,7 @@ public class Ville {
 	public String toString() {
 		return "Ville [nom=" + nom + ", meteos=" + meteos + "]";
 	}
-	
-	
+
 
 
 	

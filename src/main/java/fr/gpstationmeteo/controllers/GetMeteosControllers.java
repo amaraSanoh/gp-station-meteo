@@ -35,14 +35,20 @@ public class GetMeteosControllers {
 	private VilleRepository villeRepo;
 	
 	@GetMapping("/ville/{nom}")
-	public Ville getMeteo(HttpServletRequest request, @PathVariable String nom) 
+	public Ville ville(HttpServletRequest request, @PathVariable String nom) 
 	{ 
 		return villeRepo.findByNom(nom);
 	}
 	
 	@GetMapping("/ville/{nom}/meteos")
-	public List<Meteo> getMeteos(HttpServletRequest request, @PathVariable String nom) 
+	public List<Meteo> meteosByVille(HttpServletRequest request, @PathVariable String nom) 
 	{
 		return meteoRepo.findByVilleNom(nom);
+	}
+	
+	@GetMapping("/ville/{nom}/meteo/{jour}")
+	public Meteo meteoByJour(HttpServletRequest request, @PathVariable String nom, @PathVariable String jour) 
+	{
+		return meteoRepo.findMeteoByJour(nom, jour);
 	}
 }

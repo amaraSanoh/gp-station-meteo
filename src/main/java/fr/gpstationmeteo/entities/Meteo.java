@@ -44,7 +44,7 @@ public class Meteo {
 		
 		@ManyToOne(targetEntity = Ville.class)
 		@JsonBackReference
-		private  Ville ville = null;
+		private  Ville ville;
 
 		public Long getId() {
 			return id;
