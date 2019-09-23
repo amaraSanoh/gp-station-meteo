@@ -1,13 +1,13 @@
 
-INSERT INTO meteo VALUES('Metz', '12', '13');
+INSERT INTO ville VALUES('Metz');
 
-INSERT INTO matin (
+INSERT INTO meteo (
 		  	id, 
 			jour, 
 			temperature, 
 			commentaire,
 			icon, 
-			meteo_nom
+			ville_nom
 		  )
 		  VALUES 
 		  (
@@ -19,13 +19,13 @@ INSERT INTO matin (
 			'Metz'
 		  );
 
-INSERT INTO matin (
+INSERT INTO meteo (
 		  	id, 
 			jour, 
 			temperature, 
 			commentaire,
 			icon, 
-			meteo_nom
+			ville_nom
 		  )	
 		  VALUES 
 		  (
