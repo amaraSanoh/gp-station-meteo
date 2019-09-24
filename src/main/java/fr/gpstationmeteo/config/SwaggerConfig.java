@@ -34,7 +34,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .description("\"Spring Boot REST API pour Station Météo\"")
                 .version("1.0.0")
                 .license("Apache License Version 2.0")
-                .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
+                .licenseUrl("https://www.apache.org/licenses")
                 .contact(new Contact("Taleb - Yade - Sanoh", "https://ent.univ-lorraine.fr/", "tys@gpstationmeteo.fr"))
                 .build();
     }
