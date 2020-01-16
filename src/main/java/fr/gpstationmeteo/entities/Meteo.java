@@ -1,73 +1,104 @@
-/**
- * 
- */
 package fr.gpstationmeteo.entities;
+
+
+//import java.time.OffsetDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-/**
- * @author Taleb - Yade - Sanoh
- *
- */
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class Meteo {
 
-	@Id
-	@Column
-	private String nom; 
-	
-	@Override
-	public String toString() {
-		return "Meteo [nom=" + nom + ", matin=" + matin + ", midi=" + midi + ", soir=" + soir + "]";
-	}
+		@Id
+		@Column
+		@JsonProperty("id")
+		private Long id;
+	/*	
+		@Column
+		@JsonProperty("date")
+		private OffsetDateTime date;
+		*/
+		
+		@Column
+		@JsonProperty("jour")
+		private String jour; 
+		
+		@Column
+		@JsonProperty("temperature")
+		private String temperature; 
+		
+		@Column
+		@JsonProperty("commentaire")
+		private String commentaire;
+		
+		@Column
+		@JsonProperty("icon")
+		private String icon;
+		
+		@ManyToOne(targetEntity = Ville.class)
+		@JsonBackReference
+		private  Ville ville;
 
-	@Column	
-	private String matin;
-	
-	@Column
-	private String midi; 
-	
-	@Column
-	private String soir;
-	
-	public Meteo() {}
-	
-	public String getNom() {
-		return nom;
-	}
+		public Long getId() {
+			return id;
+		}
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+		public void setId(Long id) {
+			this.id = id;
+		}
 
-	public String getMatin() {
-		return matin;
-	}
+		public String getJour() {
+			return jour;
+		}
 
-	public void setMatin(String matin) {
-		this.matin = matin;
-	}
+		public void setJour(String jour) {
+			this.jour = jour;
+		}
 
-	public String getMidi() {
-		return midi;
-	}
+		public String getTemperature() {
+			return temperature;
+		}
 
-	public void setMidi(String midi) {
-		this.midi = midi;
-	}
+		public void setTemperature(String temperature) {
+			this.temperature = temperature;
+		}
 
-	public String getSoir() {
-		return soir;
-	}
+		public String getCommentaire() {
+			return commentaire;
+		}
 
-	public void setSoir(String soir) {
-		this.soir = soir;
-	}
+		public void setCommentaire(String commentaire) {
+			this.commentaire = commentaire;
+		}
 
-	
-	
+		public String getIcon() {
+			return icon;
+		}
 
+		public void setIcon(String icon) {
+			this.icon = icon;
+		}
 
+		public Ville getVille() {
+			return ville;
+		}
+
+		public void setVille(Ville ville) {
+			this.ville = ville;
+		}
+
+		@Override
+		public String toString() {
+			return "Meteo [id=" + id + ", jour=" + jour + ", temperature=" + temperature + ", commentaire="
+					+ commentaire + ", icon=" + icon + ", ville=" + ville.getNom() + "]";
+		}
+
+		
+		
 }
