@@ -1,13 +1,12 @@
 package fr.gpstationmeteo.services;
 
 import fr.gpstationmeteo.entities.Meteo;
-import fr.gpstationmeteo.entities.Ville;
 import fr.gpstationmeteo.repositories.MeteoRepository;
-import fr.gpstationmeteo.repositories.VilleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MeteoService {
@@ -20,7 +19,7 @@ public class MeteoService {
      * @return liste des meteos
      **/
     public List<Meteo> meteos() {
-        List<Meteo> meteos = new ArrayList<Meteo>();
+        List<Meteo> meteos = new ArrayList<>();
         meteoRepository.findAll().forEach(meteo -> meteos.add(meteo));
         return meteos;
     }
@@ -32,7 +31,11 @@ public class MeteoService {
      * @return une entite de type meteo
      */
     public Meteo getMeteoById(long id) {
-        return meteoRepository.findById(id).get();
+        Optional<Meteo> optionalMeteo = meteoRepository.findById(id);
+        if (optionalMeteo.isPresent()){
+            return optionalMeteo.get();
+        }
+        return null;
     }
 
     /**

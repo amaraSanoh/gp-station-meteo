@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VilleService {
@@ -21,7 +22,7 @@ public class VilleService {
      * @return liste des villes
      **/
     public List<Ville> villes() {
-        List<Ville> villes = new ArrayList<Ville>();
+        List<Ville> villes = new ArrayList<>();
         villeRepository.findAll().forEach(ville -> villes.add(ville));
         return villes;
     }
@@ -33,7 +34,11 @@ public class VilleService {
      * @return une entite de type vil
      */
     public Ville getVilleByNom(String nom) {
-        return villeRepository.findById(nom).get();
+        Optional<Ville> ville = villeRepository.findById(nom);
+        if (ville.isPresent()){
+            return ville.get();
+        }
+        return null;
     }
 
     /**

@@ -1,15 +1,24 @@
 package fr.gpstationmeteo.controllers;
 
+import com.opencsv.CSVWriter;
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import fr.gpstationmeteo.entities.Meteo;
 import fr.gpstationmeteo.entities.Ville;
-import fr.gpstationmeteo.repositories.MeteoRepository;
-import fr.gpstationmeteo.services.MeteoService;
+
 import fr.gpstationmeteo.services.VilleService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
+
+import static com.opencsv.ICSVWriter.DEFAULT_QUOTE_CHARACTER;
 
 /**
  * @author Taleb - Yade - Amara
@@ -51,6 +60,22 @@ public class VillesControllers {
     @DeleteMapping("ville/suppression/{nom}")
     public void deleteVille(@PathVariable String nom){
         villeService.deleteVille(nom);
+    }
+
+
+    @GetMapping("/export-villes")
+    public void exportCSV(HttpServletResponse response) throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
+        String filename = "villes.csv";
+
+        response.setContentType("text/csv");
+        response.setHeader( HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filename + "\"");
+        StatefulBeanToCsv<Ville> writer = new StatefulBeanToCsvBuilder<Ville>(response.getWriter())
+                .withQuotechar(DEFAULT_QUOTE_CHARACTER)
+                .withSeparator(';')
+                .withOrderedResults(false)
+                .build();
+
+        writer.write(villeService.villes());
     }
 
 }

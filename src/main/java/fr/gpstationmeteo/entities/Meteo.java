@@ -1,11 +1,8 @@
 package fr.gpstationmeteo.entities;
 
 
-//import java.time.OffsetDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -22,7 +19,6 @@ public class Meteo {
 	/*	
 		@Column
 		@JsonProperty("date")
-		private OffsetDateTime date;
 		*/
 		
 		@Column

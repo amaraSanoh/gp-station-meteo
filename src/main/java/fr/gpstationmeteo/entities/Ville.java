@@ -11,7 +11,6 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 /**
  * @author Taleb - Yade - Sanoh
  *
@@ -22,10 +21,10 @@ public class Ville {
 	@Id
 	@Column
 	@JsonProperty("nom")
-	private String nom; 
+	private String nom;
 	
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "ville", cascade = CascadeType.ALL, orphanRemoval = true)
-	private  Collection<Meteo> meteos;
+    private  Collection<Meteo> meteos;
 
 	public String getNom() {
 		return nom;
