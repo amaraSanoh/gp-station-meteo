@@ -1,6 +1,5 @@
 package fr.gpstationmeteo.controllers;
 
-import com.opencsv.CSVWriter;
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
@@ -26,56 +25,52 @@ import static com.opencsv.ICSVWriter.DEFAULT_QUOTE_CHARACTER;
  */
 @RestController
 @RequestMapping("/api")
-@Api(value="station de chaque villes")
+@Api(value = "station de chaque villes")
 
 public class VillesControllers {
 
-    @Autowired
-    VilleService villeService;
+  @Autowired
+  VilleService villeService;
 
-    @GetMapping("/villes")
-    public List<Ville> villes()
-    {
-        return villeService.villes();
-    }
+  @GetMapping("/villes")
+  public List<Ville> villes() {
+    return villeService.villes();
+  }
 
-    @GetMapping("/ville/{nom}")
-    public Ville ville(@PathVariable String nom)
-    {
-        return villeService.getVilleByNom(nom);
-    }
+  @GetMapping("/ville/{nom}")
+  public Ville ville(@PathVariable String nom) {
+    return villeService.getVilleByNom(nom);
+  }
 
-    @GetMapping("/ville/{nom}/meteos")
-    public List<Meteo> meteosByVille(@PathVariable String nom)
-    {
-        return villeService.getMeteosByNomVille(nom);
-    }
+  @GetMapping("/ville/{nom}/meteos")
+  public List<Meteo> meteosByVille(@PathVariable String nom) {
+    return villeService.getMeteosByNomVille(nom);
+  }
 
-    @PostMapping("villes/ajout")
-    public Ville ajoutVille(@RequestBody Ville ville){
-        villeService.saveOrUpdate(ville);
-        return ville;
-    }
+  @PostMapping("villes/ajout")
+  public Ville ajoutVille(@RequestBody Ville ville) {
+    villeService.saveOrUpdate(ville);
+    return ville;
+  }
 
-    @DeleteMapping("ville/suppression/{nom}")
-    public void deleteVille(@PathVariable String nom){
-        villeService.deleteVille(nom);
-    }
+  @DeleteMapping("ville/suppression/{nom}")
+  public void deleteVille(@PathVariable String nom) {
+    villeService.deleteVille(nom);
+  }
 
 
-    @GetMapping("/export-villes")
-    public void exportCSV(HttpServletResponse response) throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
-        String filename = "villes.csv";
+  @GetMapping("/export-villes")
+  public void exportCSV(HttpServletResponse response)
+        throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
+    String filename = "villes.csv";
 
-        response.setContentType("text/csv");
-        response.setHeader( HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filename + "\"");
-        StatefulBeanToCsv<Ville> writer = new StatefulBeanToCsvBuilder<Ville>(response.getWriter())
-                .withQuotechar(DEFAULT_QUOTE_CHARACTER)
-                .withSeparator(';')
-                .withOrderedResults(false)
-                .build();
-
-        writer.write(villeService.villes());
-    }
-
+    response.setContentType("text/csv");
+    response.setHeader(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" +filename + "\"");
+    StatefulBeanToCsv<Ville> writer = new StatefulBeanToCsvBuilder<Ville>(response.getWriter())
+            .withQuotechar(DEFAULT_QUOTE_CHARACTER)
+            .withSeparator(';')
+            .withOrderedResults(false)
+            .build();
+    writer.write(villeService.villes());
+  }
 }
