@@ -1,15 +1,9 @@
-/**
- * 
- */
 package fr.gpstationmeteo.repositories;
 
 
+import fr.gpstationmeteo.entities.Ville;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import fr.gpstationmeteo.entities.Ville;
-
-
 
 /**
  * @author Taleb - Yade - Sanoh

@@ -1,100 +1,98 @@
 package fr.gpstationmeteo.entities;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Meteo {
 
-		@Id
-		@Column
-		@JsonProperty("id")
-		private Long id;
-	/*	
-		@Column
-		@JsonProperty("date")
-		*/
+  @Id
+  @Column
+  @JsonProperty("id")
+  private Long id;
+  /*
+  @Column
+  @JsonProperty("date")
+  */
 		
-		@Column
-		@JsonProperty("jour")
-		private String jour; 
-		
-		@Column
-		@JsonProperty("temperature")
-		private String temperature; 
-		
-		@Column
-		@JsonProperty("commentaire")
-		private String commentaire;
-		
-		@Column
-		@JsonProperty("icon")
-		private String icon;
-		
-		@ManyToOne(targetEntity = Ville.class)
-		@JsonBackReference
-		private  Ville ville;
+  @Column
+  @JsonProperty("jour")
+  private String jour;
 
-		public Long getId() {
-			return id;
-		}
+  @Column
+  @JsonProperty("temperature")
+  private String temperature;
 
-		public void setId(Long id) {
-			this.id = id;
-		}
+  @Column
+  @JsonProperty("commentaire")
+  private String commentaire;
 
-		public String getJour() {
-			return jour;
-		}
+  @Column
+  @JsonProperty("icon")
+  private String icon;
 
-		public void setJour(String jour) {
-			this.jour = jour;
-		}
+  @ManyToOne(targetEntity = Ville.class)
+  @JsonBackReference
+  private  Ville ville;
 
-		public String getTemperature() {
-			return temperature;
-		}
+  public Long getId() {
+    return id;
+  }
 
-		public void setTemperature(String temperature) {
-			this.temperature = temperature;
-		}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-		public String getCommentaire() {
-			return commentaire;
-		}
+  public String getJour() {
+    return jour;
+  }
 
-		public void setCommentaire(String commentaire) {
-			this.commentaire = commentaire;
-		}
+  public void setJour(String jour) {
+    this.jour = jour;
+  }
 
-		public String getIcon() {
-			return icon;
-		}
+  public String getTemperature() {
+    return temperature;
+  }
 
-		public void setIcon(String icon) {
-			this.icon = icon;
-		}
+  public void setTemperature(String temperature) {
+    this.temperature = temperature;
+  }
 
-		public Ville getVille() {
-			return ville;
-		}
+  public String getCommentaire() {
+    return commentaire;
+  }
 
-		public void setVille(Ville ville) {
-			this.ville = ville;
-		}
+  public void setCommentaire(String commentaire) {
+    this.commentaire = commentaire;
+  }
 
-		@Override
-		public String toString() {
-			return "Meteo [id=" + id + ", jour=" + jour + ", temperature=" + temperature + ", commentaire="
-					+ commentaire + ", icon=" + icon + ", ville=" + ville.getNom() + "]";
-		}
+  public String getIcon() {
+    return icon;
+  }
 
-		
-		
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
+
+  public Ville getVille() {
+    return ville;
+  }
+
+  public void setVille(Ville ville) {
+    this.ville = ville;
+  }
+
+  @Override
+  public String toString() {
+    return "Meteo [id=" + id + ", jour=" + jour + ", temperature=" + temperature
+      + ", commentaire=" + commentaire + ", icon="
+      + icon + ", ville=" + ville.getNom() + "]";
+  }
+
 }
