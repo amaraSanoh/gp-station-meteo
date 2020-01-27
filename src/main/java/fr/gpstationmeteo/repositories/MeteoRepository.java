@@ -13,11 +13,10 @@ public interface MeteoRepository extends JpaRepository<Meteo, Long> {
   @Query(value = "SELECT * FROM meteo", nativeQuery = true)
   List<Meteo> findAll();
 
-  @Query(value = "SELECT * FROM meteo join ville on ville.nom = meteo.ville_nom "
-       +	"WHERE meteo.jour LIKE %?1%", nativeQuery = true)
+  @Query(value = "SELECT * FROM meteo WHERE meteo.jour LIKE %?1%", nativeQuery = true)
   List<Meteo> findMeteoByJour(String jour);
 
-  @Query(value = "SELECT * FROM meteo WHERE meteo.ville_nom = ?1",nativeQuery = true)
+  @Query(value = "SELECT * FROM meteo WHERE meteo.ville = ?1",nativeQuery = true)
   List<Meteo> findMeteoByVille(String nom);
 }
 

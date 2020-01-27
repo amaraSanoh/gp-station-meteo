@@ -1,11 +1,9 @@
 package fr.gpstationmeteo.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -36,9 +34,9 @@ public class Meteo {
   @JsonProperty("icon")
   private String icon;
 
-  @ManyToOne(targetEntity = Ville.class)
-  @JsonBackReference
-  private  Ville ville;
+  @Column
+  @JsonProperty("ville")
+  private String ville;
 
   public Long getId() {
     return id;
@@ -80,11 +78,11 @@ public class Meteo {
     this.icon = icon;
   }
 
-  public Ville getVille() {
+  public String getVille() {
     return ville;
   }
 
-  public void setVille(Ville ville) {
+  public void setVille(String ville) {
     this.ville = ville;
   }
 
@@ -92,7 +90,7 @@ public class Meteo {
   public String toString() {
     return "Meteo [id=" + id + ", jour=" + jour + ", temperature=" + temperature
       + ", commentaire=" + commentaire + ", icon="
-      + icon + ", ville=" + ville.getNom() + "]";
+      + icon + ", ville=" + ville + "]";
   }
 
 }
